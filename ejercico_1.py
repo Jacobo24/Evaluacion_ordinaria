@@ -1,66 +1,44 @@
-class Nonograma:
-    def __init__(self, pistas_filas, pistas_columnas):
-        self.pistas_filas = pistas_filas
-        self.pistas_columnas = pistas_columnas
-        self.matriz = [[0 for _ in range(5)] for _ in range(5)]
-
-    def resolver(self):
-        cambios = True
-        while cambios:
-            cambios = False
-            for i in range(5):
-                cambios |= self.aplicar_pistas_fila(i)
-                cambios |= self.aplicar_pistas_columna(i)
-            cambios |= self.usar_logica()
-        return self.matriz
-
-    def aplicar_pistas_fila(self, fila):
-        cambios = False
-        pistas = self.pistas_filas[fila]
-        pos = 0
-        for p in pistas:
-            pos += p + 1
-            for i in range(pos - p, pos):
-                if self.matriz[fila][i] == 0:
-                    self.matriz[fila][i] = 1
-                    cambios = True
-        return cambios
-
-    def aplicar_pistas_columna(self, columna):
-        cambios = False
-        pistas = self.pistas_columnas[columna]
-        pos = 0
-        for p in pistas:
-            pos += p + 1
-            for i in range(pos - p, pos):
-                if self.matriz[i][columna] == 0:
-                    self.matriz[i][columna] = 1
-                    cambios = True
-        return cambios
-
-    def usar_logica(self):
-        cambios = False
-        for i in range(5):
-            for j in range(5):
-                if self.matriz[i][j] == 0:
-                    cambios |= self.deducir_celda(i, j)
-        return cambios
-
-    def deducir_celda(self, fila, columna):
-        cambios = False
-        if self.es_impossible_celda_negra(fila, columna):
-            self.matriz[fila][columna] = 2
-            cambios = True
-        elif self.es_necesaria_celda_negra(fila, columna):
-            self.matriz[fila][columna] = 1
-            cambios = True
-        return cambios
-
-    def es_impossible_celda_negra(self, fila, columna):
-        pass
-
-    def es_necesaria_celda_negra(self, fila, columna):
+class Nonogram:
+    def _init_(self, clues):
+        self.row_clues, self.col_clues = clues
+        self.row_len, self.col_len = len(self.row_clues), len(self.col_clues)
+        self.puzzle = [[0 for _ in range(self.col_len)] for _ in range(self.row_len)]
+        
+    def solve(self):
+        # Use backtracking algorithm to solve the nonogram
+        self._solve(0, 0)
+        return self.puzzle
+    
+    def _solve(self, row, col):
+        # Base case: if we have filled the entire puzzle, return true
+        if row == self.row_len and col == 0:
+            return True
+        
+        # Move to the next column if we have filled the current one
+        if col == self.col_len:
+            row += 1
+            col = 0
+        
+        # Skip cells that have been filled
+        if self.puzzle[row][col] != 0:
+            return self._solve(row, col + 1)
+        
+        # Try filling the current cell with black and white, and move forward if valid
+        for fill in (1, 0):
+            self.puzzle[row][col] = fill
+            if self._is_valid(row, col) and self._solve(row, col + 1):
+                return True
+        
+        # Backtrack
+        self.puzzle[row][col] = 0
+        return False
+    
+    def _is_valid(self, row, col):
+        # Check if the current row and col is valid based on the clues
         pass
 
 if __name__ == "__main__":
-    pistas_filas = [[2, 1], [1, 2], [3], [2], [2, 1]]
+    clues = ([[1], [2], [1]], [[1], [1], [1]])
+    nono = Nonogram(clues)
+    puzzle = nono.solve()
+    print(puzzle)
