@@ -41,7 +41,7 @@ def simplify(polynomial: str) -> str:
         simplified_polynomial = simplified_polynomial[1:]
     return simplified_polynomial
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     # Test cases
     test_cases = [
         "3x-zx+2xy-x",
