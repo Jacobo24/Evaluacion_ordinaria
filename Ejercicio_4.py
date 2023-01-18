@@ -23,6 +23,7 @@ def do_math(numbers: str) -> int:
         result = eval(f"{result} {operations[i % 4]} {sorted_numbers[i]}")
     return round(result)
 
-print(do_math("24z6 1x23 y369 89a 900b")) # 1299
-print(do_math("24z6 1z23 y369 89z 900b")) # 1414
-print(do_math("10a 90x 14b 78u 45a 7b 34y")) # 60
+if __name__ == "__main__":
+    print(do_math("24z6 1x23 y369 89a 900b")) # 1299
+    print(do_math("24z6 1z23 y369 89z 900b")) # 1414
+    print(do_math("10a 90x 14b 78u 45a 7b 34y")) # 60
