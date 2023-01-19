@@ -1,7 +1,7 @@
 def solve_nonogram(clues):
-    # clues is a tuple of column clues followed by row clues
+    # pistas es una tupla de dos elementos, cada uno de ellos es una lista de 5 elementos
     col_clues, row_clues = clues
-    # Initialize the 5x5 matrix with all blank spaces
+    # Crear una matriz de 5x5 con todos los elementos inicializados en '_'
     matrix = [['_' for _ in range(5)] for _ in range(5)]
     # Fill in cells based on column clues
     for col, clues in enumerate(col_clues):

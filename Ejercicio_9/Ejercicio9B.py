@@ -1,3 +1,4 @@
+#Si contamos todos los lunes que ha vivido una persona "esos lunes malos y buenos"
 import datetime
 
 def number_of_mondays(birthday, current_date):

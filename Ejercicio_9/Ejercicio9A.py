@@ -1,3 +1,4 @@
+#Si solo contamos los lunes a partir de los 22 años "esos malos lunes"
 from datetime import date, timedelta
 
 def count_mondays(birthday: date, current_date: date) -> int:
