@@ -26,12 +26,18 @@ def numbersOfLetters(n):
     result.append(word)
 
     # continuar hasta alcanzar un equilibrio estable
-    while len(result[-1]) != 4:
+    while True:
         word = ""
         for digit in str(len(result[-1])):
             word += digits[int(digit)]
         result.append(word)
+        if len(result[-1]) == 4:
+            break
 
+    # convertir el número de letras en la última palabra en un número
+    final_num = int(len(result[-1]))
+    final_word = digits[final_num]
+    result.append(final_word)
     return result
 
 print(numbersOfLetters(60)) # ["sixzero", "seven", "five", "four"]
