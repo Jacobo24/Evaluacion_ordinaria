@@ -1,9 +1,9 @@
 def solve_nonogram(clues):
-    # pistas es una tupla de dos elementos, cada uno de ellos es una lista de 5 elementos
+    # Pistas es una tupla de dos elementos, cada uno de ellos es una lista de 5 elementos
     col_clues, row_clues = clues
     # Crear una matriz de 5x5 con todos los elementos inicializados en '_'
     matrix = [['_' for _ in range(5)] for _ in range(5)]
-    # Fill in cells based on column clues
+    # Rellene las celdas según las pistas de la columna
     for col, clues in enumerate(col_clues):
         current_clue_index = 0
         current_clue = clues[current_clue_index]
@@ -19,7 +19,7 @@ def solve_nonogram(clues):
                         current_clue_count = 0
                     else:
                         break
-    # Fill in cells based on row clues
+    # Rellene las celdas en función de las pistas de fila
     for row, clues in enumerate(row_clues):
         current_clue_index = 0
         current_clue = clues[current_clue_index]
@@ -35,7 +35,7 @@ def solve_nonogram(clues):
                         current_clue_count = 0
                     else:
                         break
-    # Use logical deduction to fill in remaining cells
+    # Use la deducción lógica para completar las celdas restantes
     for row in range(5):
         for col in range(5):
             if matrix[row][col] == '_':
@@ -48,3 +48,5 @@ solved_nonogram = solve_nonogram(clues)
 
 for row in solved_nonogram:
     print(row)
+
+# Código más complejo para que me de otra matriz
