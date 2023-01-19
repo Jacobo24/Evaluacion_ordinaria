@@ -23,4 +23,4 @@ solved_nonogram = solve_nonogram(matrix)
 for row in solved_nonogram:
     print(row)
 
-# Para que me da la solución que me pones de ejemplo
+# Para que me da la solución que me pones de ejemplo, esta es la opción que pides por eso es la A
